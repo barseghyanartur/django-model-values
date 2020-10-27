@@ -1,0 +1,3853 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Taking the O out of ORM.">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Reference - django-model-values</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model_values.Lookup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="django-model-values" class="md-header-nav__button md-logo" aria-label="django-model-values">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            django-model-values
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Reference
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/coady/django-model-values" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    coady/django-model-values
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="django-model-values" class="md-nav__button md-logo" aria-label="django-model-values">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    django-model-values
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/coady/django-model-values" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    coady/django-model-values
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Reference
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.Lookup" class="md-nav__link">
+    Lookup
+  </a>
+  
+    <nav class="md-nav" aria-label="Lookup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.is_valid" class="md-nav__link">
+    is_valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__ge__" class="md-nav__link">
+    __ge__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__gt__" class="md-nav__link">
+    __gt__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__le__" class="md-nav__link">
+    __le__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__lshift__" class="md-nav__link">
+    __lshift__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__lt__" class="md-nav__link">
+    __lt__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__ne__" class="md-nav__link">
+    __ne__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__rshift__" class="md-nav__link">
+    __rshift__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.above" class="md-nav__link">
+    above()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.below" class="md-nav__link">
+    below()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.contained" class="md-nav__link">
+    contained()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.contains" class="md-nav__link">
+    contains()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.coveredby" class="md-nav__link">
+    coveredby()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.covers" class="md-nav__link">
+    covers()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.crosses" class="md-nav__link">
+    crosses()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.disjoint" class="md-nav__link">
+    disjoint()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.endswith" class="md-nav__link">
+    endswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.equals" class="md-nav__link">
+    equals()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.icontains" class="md-nav__link">
+    icontains()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.iendswith" class="md-nav__link">
+    iendswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.iexact" class="md-nav__link">
+    iexact()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.intersects" class="md-nav__link">
+    intersects()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.iregex" class="md-nav__link">
+    iregex()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.isin" class="md-nav__link">
+    isin()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.istartswith" class="md-nav__link">
+    istartswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.left" class="md-nav__link">
+    left()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.overlaps" class="md-nav__link">
+    overlaps()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.range" class="md-nav__link">
+    range()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.regex" class="md-nav__link">
+    regex()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.relate" class="md-nav__link">
+    relate()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.right" class="md-nav__link">
+    right()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.startswith" class="md-nav__link">
+    startswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.touches" class="md-nav__link">
+    touches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.within" class="md-nav__link">
+    within()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.F" class="md-nav__link">
+    F
+  </a>
+  
+    <nav class="md-nav" aria-label="F">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__eq__" class="md-nav__link">
+    __eq__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__getattr__" class="md-nav__link">
+    __getattr__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__ne__" class="md-nav__link">
+    __ne__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.ljust" class="md-nav__link">
+    ljust()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.log" class="md-nav__link">
+    log()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.replace" class="md-nav__link">
+    replace()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.rjust" class="md-nav__link">
+    rjust()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.QuerySet" class="md-nav__link">
+    QuerySet
+  </a>
+  
+    <nav class="md-nav" aria-label="QuerySet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__add__" class="md-nav__link">
+    __add__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__contains__" class="md-nav__link">
+    __contains__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__eq__" class="md-nav__link">
+    __eq__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__mod__" class="md-nav__link">
+    __mod__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__mul__" class="md-nav__link">
+    __mul__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__pow__" class="md-nav__link">
+    __pow__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__setitem__" class="md-nav__link">
+    __setitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__sub__" class="md-nav__link">
+    __sub__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__truediv__" class="md-nav__link">
+    __truediv__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.annotate" class="md-nav__link">
+    annotate()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.change" class="md-nav__link">
+    change()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.changed" class="md-nav__link">
+    changed()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.exists" class="md-nav__link">
+    exists()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.groupby" class="md-nav__link">
+    groupby()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.items" class="md-nav__link">
+    items()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.max" class="md-nav__link">
+    max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.mean" class="md-nav__link">
+    mean()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.min" class="md-nav__link">
+    min()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.reduce" class="md-nav__link">
+    reduce()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.sort_values" class="md-nav__link">
+    sort_values()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.std" class="md-nav__link">
+    std()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.sum" class="md-nav__link">
+    sum()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.update" class="md-nav__link">
+    update()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.value_counts" class="md-nav__link">
+    value_counts()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.var" class="md-nav__link">
+    var()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.Manager" class="md-nav__link">
+    Manager
+  </a>
+  
+    <nav class="md-nav" aria-label="Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.__contains__" class="md-nav__link">
+    __contains__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.__delitem__" class="md-nav__link">
+    __delitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.bulk_change" class="md-nav__link">
+    bulk_change()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.bulk_changed" class="md-nav__link">
+    bulk_changed()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.get_queryset" class="md-nav__link">
+    get_queryset()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.upsert" class="md-nav__link">
+    upsert()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.Case" class="md-nav__link">
+    Case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.classproperty" class="md-nav__link">
+    classproperty
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.EnumField" class="md-nav__link">
+    EnumField()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../example/" class="md-nav__link">
+      Example
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.Lookup" class="md-nav__link">
+    Lookup
+  </a>
+  
+    <nav class="md-nav" aria-label="Lookup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.is_valid" class="md-nav__link">
+    is_valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__ge__" class="md-nav__link">
+    __ge__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__gt__" class="md-nav__link">
+    __gt__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__le__" class="md-nav__link">
+    __le__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__lshift__" class="md-nav__link">
+    __lshift__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__lt__" class="md-nav__link">
+    __lt__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__ne__" class="md-nav__link">
+    __ne__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.__rshift__" class="md-nav__link">
+    __rshift__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.above" class="md-nav__link">
+    above()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.below" class="md-nav__link">
+    below()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.contained" class="md-nav__link">
+    contained()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.contains" class="md-nav__link">
+    contains()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.coveredby" class="md-nav__link">
+    coveredby()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.covers" class="md-nav__link">
+    covers()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.crosses" class="md-nav__link">
+    crosses()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.disjoint" class="md-nav__link">
+    disjoint()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.endswith" class="md-nav__link">
+    endswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.equals" class="md-nav__link">
+    equals()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.icontains" class="md-nav__link">
+    icontains()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.iendswith" class="md-nav__link">
+    iendswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.iexact" class="md-nav__link">
+    iexact()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.intersects" class="md-nav__link">
+    intersects()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.iregex" class="md-nav__link">
+    iregex()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.isin" class="md-nav__link">
+    isin()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.istartswith" class="md-nav__link">
+    istartswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.left" class="md-nav__link">
+    left()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.overlaps" class="md-nav__link">
+    overlaps()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.range" class="md-nav__link">
+    range()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.regex" class="md-nav__link">
+    regex()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.relate" class="md-nav__link">
+    relate()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.right" class="md-nav__link">
+    right()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.startswith" class="md-nav__link">
+    startswith()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.touches" class="md-nav__link">
+    touches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Lookup.within" class="md-nav__link">
+    within()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.F" class="md-nav__link">
+    F
+  </a>
+  
+    <nav class="md-nav" aria-label="F">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__eq__" class="md-nav__link">
+    __eq__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__getattr__" class="md-nav__link">
+    __getattr__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.__ne__" class="md-nav__link">
+    __ne__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.ljust" class="md-nav__link">
+    ljust()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.log" class="md-nav__link">
+    log()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.replace" class="md-nav__link">
+    replace()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.F.rjust" class="md-nav__link">
+    rjust()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.QuerySet" class="md-nav__link">
+    QuerySet
+  </a>
+  
+    <nav class="md-nav" aria-label="QuerySet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__add__" class="md-nav__link">
+    __add__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__contains__" class="md-nav__link">
+    __contains__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__eq__" class="md-nav__link">
+    __eq__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__mod__" class="md-nav__link">
+    __mod__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__mul__" class="md-nav__link">
+    __mul__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__pow__" class="md-nav__link">
+    __pow__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__setitem__" class="md-nav__link">
+    __setitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__sub__" class="md-nav__link">
+    __sub__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.__truediv__" class="md-nav__link">
+    __truediv__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.annotate" class="md-nav__link">
+    annotate()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.change" class="md-nav__link">
+    change()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.changed" class="md-nav__link">
+    changed()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.exists" class="md-nav__link">
+    exists()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.groupby" class="md-nav__link">
+    groupby()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.items" class="md-nav__link">
+    items()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.max" class="md-nav__link">
+    max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.mean" class="md-nav__link">
+    mean()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.min" class="md-nav__link">
+    min()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.reduce" class="md-nav__link">
+    reduce()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.sort_values" class="md-nav__link">
+    sort_values()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.std" class="md-nav__link">
+    std()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.sum" class="md-nav__link">
+    sum()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.update" class="md-nav__link">
+    update()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.value_counts" class="md-nav__link">
+    value_counts()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.QuerySet.var" class="md-nav__link">
+    var()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.Manager" class="md-nav__link">
+    Manager
+  </a>
+  
+    <nav class="md-nav" aria-label="Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.__contains__" class="md-nav__link">
+    __contains__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.__delitem__" class="md-nav__link">
+    __delitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.bulk_change" class="md-nav__link">
+    bulk_change()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.bulk_changed" class="md-nav__link">
+    bulk_changed()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.get_queryset" class="md-nav__link">
+    get_queryset()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_values.Manager.upsert" class="md-nav__link">
+    upsert()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.Case" class="md-nav__link">
+    Case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.classproperty" class="md-nav__link">
+    classproperty
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model_values.EnumField" class="md-nav__link">
+    EnumField()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Reference</h1>
+                
+                <div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="model_values.Lookup">
+
+        <code>model_values.Lookup</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>Mixin for field lookups.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="model_values.Lookup.is_valid">
+
+        <code class="highlight">
+is_valid        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-property"><code>property</code></small>
+      <small class="doc doc-property doc-property-readonly"><code>readonly</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Whether field <code>isvalid</code>.</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.__ge__">
+
+        <code class="highlight language-python">
+__ge__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>gte</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.__gt__">
+
+        <code class="highlight language-python">
+__gt__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>gt</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.__le__">
+
+        <code class="highlight language-python">
+__le__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>lte</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.__lshift__">
+
+        <code class="highlight language-python">
+__lshift__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>left</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.__lt__">
+
+        <code class="highlight language-python">
+__lt__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>lt</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.__ne__">
+
+        <code class="highlight language-python">
+__ne__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>ne</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.__rshift__">
+
+        <code class="highlight language-python">
+__rshift__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>right</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.above">
+
+        <code class="highlight language-python">
+above<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>strictly_above</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.below">
+
+        <code class="highlight language-python">
+below<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>strictly_below</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.contained">
+
+        <code class="highlight language-python">
+contained<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>contained</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.contains">
+
+        <code class="highlight language-python">
+contains<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properly</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bb</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return whether field <code>contains</code> the value.  Options apply only to geom fields.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>properly</code></td>
+<td><code></code></td>
+<td>
+<p><code>contains_properly</code></p>
+</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>bb</code></td>
+<td><code></code></td>
+<td>
+<p>bounding box, <code>bbcontains</code></p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properly</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">"""Return whether field `contains` the value.  Options apply only to geom fields.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        properly: `contains_properly`</span>
+<span class="sd">        bb: bounding box, `bbcontains`</span>
+<span class="sd">    """</span>
+    <span class="n">properly</span> <span class="o">=</span> <span class="s1">'_properly'</span> <span class="o">*</span> <span class="nb">bool</span><span class="p">(</span><span class="n">properly</span><span class="p">)</span>
+    <span class="n">bb</span> <span class="o">=</span> <span class="s1">'bb'</span> <span class="o">*</span> <span class="nb">bool</span><span class="p">(</span><span class="n">bb</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'__</span><span class="si">{</span><span class="n">bb</span><span class="si">}</span><span class="s1">contains</span><span class="si">{</span><span class="n">properly</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.coveredby">
+
+        <code class="highlight language-python">
+coveredby<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>coveredby</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.covers">
+
+        <code class="highlight language-python">
+covers<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>covers</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.crosses">
+
+        <code class="highlight language-python">
+crosses<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>crosses</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.disjoint">
+
+        <code class="highlight language-python">
+disjoint<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>disjoint</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.endswith">
+
+        <code class="highlight language-python">
+endswith<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>endswith</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.equals">
+
+        <code class="highlight language-python">
+equals<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>equals</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.icontains">
+
+        <code class="highlight language-python">
+icontains<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>icontains</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.iendswith">
+
+        <code class="highlight language-python">
+iendswith<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>iendswith</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.iexact">
+
+        <code class="highlight language-python">
+iexact<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>iexact</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.intersects">
+
+        <code class="highlight language-python">
+intersects<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>intersects</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.iregex">
+
+        <code class="highlight language-python">
+iregex<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>iregex</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.isin">
+
+        <code class="highlight language-python">
+isin<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>in</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.istartswith">
+
+        <code class="highlight language-python">
+istartswith<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>istartswith</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.left">
+
+        <code class="highlight language-python">
+left<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>left</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.overlaps">
+
+        <code class="highlight language-python">
+overlaps<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geom</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">bb</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return whether field <code>overlaps</code> with geometry .</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>position</code></td>
+<td><code></code></td>
+<td>
+<p><code>overlaps_{left, right, above, below}</code></p>
+</td>
+<td><code>''</code></td>
+</tr>
+<tr>
+<td><code>bb</code></td>
+<td><code></code></td>
+<td>
+<p>bounding box, <code>bboverlaps</code></p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geom</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">bb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">"""Return whether field `overlaps` with geometry .</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        position: `overlaps_{left, right, above, below}`</span>
+<span class="sd">        bb: bounding box, `bboverlaps`</span>
+<span class="sd">    """</span>
+    <span class="n">bb</span> <span class="o">=</span> <span class="s1">'bb'</span> <span class="o">*</span> <span class="nb">bool</span><span class="p">(</span><span class="n">bb</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'__</span><span class="si">{</span><span class="n">bb</span><span class="si">}</span><span class="s1">overlaps_</span><span class="si">{</span><span class="n">position</span><span class="si">}</span><span class="s1">'</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">'_'</span><span class="p">))</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.range">
+
+        <code class="highlight language-python">
+range<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>range</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">):</span>
+    <span class="sd">"""range"""</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="s1">'__range'</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.regex">
+
+        <code class="highlight language-python">
+regex<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>regex</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.relate">
+
+        <code class="highlight language-python">
+relate<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>relate</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">relate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">):</span>
+    <span class="sd">"""relate"""</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="s1">'__relate'</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.right">
+
+        <code class="highlight language-python">
+right<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>right</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.startswith">
+
+        <code class="highlight language-python">
+startswith<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>startswith</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.touches">
+
+        <code class="highlight language-python">
+touches<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>touches</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__'</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">),</span> <span class="n">lookup</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Lookup.within">
+
+        <code class="highlight language-python">
+within<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geom</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return whether field is <code>within</code> geometry.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>distance</code></td>
+<td><code></code></td>
+<td>
+<p><code>dwithin</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">within</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geom</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">"""Return whether field is `within` geometry.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        distance: `dwithin`</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="s1">'__within'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">((</span><span class="n">geom</span><span class="p">,</span> <span class="n">distance</span><span class="p">),</span> <span class="s1">'__dwithin'</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Spatial lookups require <a href="https://docs.djangoproject.com/en/stable/ref/contrib/gis/">gis</a> to be enabled.</p>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="model_values.F">
+
+        <code>model_values.F</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>Create <code>F</code>, <code>Q</code>, and <code>Func</code> objects with expressions.</p>
+<p><code>F</code> creation supported as attributes:
+<code>F.user</code> == <code>F('user')</code>,
+<code>F.user.created</code> == <code>F('user__created')</code>.</p>
+<p><code>Q</code> lookups supported as methods or operators:
+<code>F.text.iexact(...)</code> == <code>Q(text__iexact=...)</code>,
+<code>F.user.created &gt;= ...</code> == <code>Q(user__created__gte=...)</code>.</p>
+<p><code>Func</code> objects also supported as methods:
+<code>F.user.created.min()</code> == <code>Min('user__created')</code>.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.__eq__">
+
+        <code class="highlight language-python">
+__eq__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>Q</code> object with lookup.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">lookup</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">''</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">:</span>
+    <span class="sd">"""Return ``Q`` object with lookup."""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">lookup</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="n">models</span><span class="o">.</span><span class="n">F</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">return</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.__getattr__">
+
+        <code class="highlight language-python">
+__getattr__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return new <code>F</code>_ object with chained attribute.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'F'</span><span class="p">:</span>
+    <span class="sd">"""Return new `F`_ object with chained attribute."""</span>
+    <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="s1">'</span><span class="si">{}</span><span class="s1">__</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.__getitem__">
+
+        <code class="highlight language-python">
+__getitem__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slc</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return field <code>Substr</code> or <code>Right</code>.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slc</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Func</span><span class="p">:</span>
+    <span class="sd">"""Return field ``Substr`` or ``Right``."""</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">slc</span><span class="o">.</span><span class="n">stop</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">slc</span><span class="o">.</span><span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">slc</span><span class="o">.</span><span class="n">start</span> <span class="ow">or</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">slc</span><span class="o">.</span><span class="n">stop</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">functions</span><span class="o">.</span><span class="n">Right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">-</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">slc</span><span class="o">.</span><span class="n">stop</span> <span class="ow">and</span> <span class="nb">max</span><span class="p">(</span><span class="n">slc</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">functions</span><span class="o">.</span><span class="n">Substr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.__ne__">
+
+        <code class="highlight language-python">
+__ne__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Allow __ne=None lookup without custom queryset.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">:</span>
+    <span class="sd">"""Allow __ne=None lookup without custom queryset."""</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s1">'__isnull'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">'__ne'</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.find">
+
+        <code class="highlight language-python">
+find<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sub</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>StrIndex</code> with <code>str.find</code> semantics.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sub</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Expression</span><span class="p">:</span>
+    <span class="sd">"""Return ``StrIndex`` with ``str.find`` semantics."""</span>
+    <span class="k">return</span> <span class="n">functions</span><span class="o">.</span><span class="n">StrIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">sub</span><span class="p">),</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.ljust">
+
+        <code class="highlight language-python">
+ljust<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">' '</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>LPad</code> with wrapped values.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">ljust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">' '</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Func</span><span class="p">:</span>
+    <span class="sd">"""Return ``LPad`` with wrapped values."""</span>
+    <span class="k">return</span> <span class="n">functions</span><span class="o">.</span><span class="n">LPad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">fill</span><span class="p">),</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.log">
+
+        <code class="highlight language-python">
+log<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mf">2.718281828459045</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>Log</code>, by default <code>Ln</code>.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Func</span><span class="p">:</span>
+    <span class="sd">"""Return ``Log``, by default ``Ln``."""</span>
+    <span class="k">return</span> <span class="n">functions</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.replace">
+
+        <code class="highlight language-python">
+replace<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>Replace</code> with wrapped values.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Func</span><span class="p">:</span>
+    <span class="sd">"""Return ``Replace`` with wrapped values."""</span>
+    <span class="k">return</span> <span class="n">functions</span><span class="o">.</span><span class="n">Replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">old</span><span class="p">),</span> <span class="n">Value</span><span class="p">(</span><span class="n">new</span><span class="p">),</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.F.rjust">
+
+        <code class="highlight language-python">
+rjust<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">' '</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>RPad</code> with wrapped values.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">rjust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">' '</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Func</span><span class="p">:</span>
+    <span class="sd">"""Return ``RPad`` with wrapped values."""</span>
+    <span class="k">return</span> <span class="n">functions</span><span class="o">.</span><span class="n">RPad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">fill</span><span class="p">),</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since attributes are used for constructing <a href="#model_values.F">F</a> objects, there may be collisions between field names and methods. For example, <code>name</code> is a reserved attribute, but the usual constructor can still be used: <code>F('name')</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See source for available spatial functions if <a href="https://docs.djangoproject.com/en/stable/ref/contrib/gis/">gis</a> is configured.</p>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="model_values.QuerySet">
+
+        <code>model_values.QuerySet</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__add__">
+
+        <code class="highlight language-python">
+__add__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>add</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">),</span> <span class="n">value</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__contains__">
+
+        <code class="highlight language-python">
+__contains__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return whether value is present using <code>exists</code>.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">"""Return whether value is present using ``exists``."""</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_cache</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flat</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__eq__">
+
+        <code class="highlight language-python">
+__eq__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>QuerySet</code>_ filtered by comparison to given value.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">lookup</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">''</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'QuerySet'</span><span class="p">:</span>
+    <span class="sd">"""Return `QuerySet`_ filtered by comparison to given value."""</span>
+    <span class="p">(</span><span class="n">field</span><span class="p">,)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">field</span> <span class="o">+</span> <span class="n">lookup</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__getitem__">
+
+        <code class="highlight language-python">
+__getitem__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Allow column access by field names, expressions, or <code>F</code> objects.</p>
+<p><code>qs[field]</code> returns flat <code>values_list</code></p>
+<p><code>qs[field, ...]</code> returns tupled <code>values_list</code></p>
+<p><code>qs[Q_obj]</code> provisionally returns filtered <code>QuerySet</code>_</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="sd">"""Allow column access by field names, expressions, or ``F`` objects.</span>
+
+<span class="sd">    ``qs[field]`` returns flat ``values_list``</span>
+
+<span class="sd">    ``qs[field, ...]`` returns tupled ``values_list``</span>
+
+<span class="sd">    ``qs[Q_obj]`` provisionally returns filtered `QuerySet`_</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="n">extract</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span> <span class="n">named</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Expression</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__iter__">
+
+        <code class="highlight language-python">
+__iter__<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Iteration extended to support :meth:<code>groupby</code>.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">"""Iteration extended to support :meth:`groupby`."""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'_groupby'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_groupby</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_groupby</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">]</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_groupby</span><span class="p">)</span><span class="o">.</span><span class="n">iterator</span><span class="p">()</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)))</span>
+    <span class="n">getter</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="n">size</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flat</span> <span class="k">else</span> <span class="nb">slice</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_named</span><span class="p">:</span>
+        <span class="n">Row</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">'Row'</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
+        <span class="n">getter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">tup</span><span class="p">:</span> <span class="n">Row</span><span class="p">(</span><span class="o">*</span><span class="n">tup</span><span class="p">[</span><span class="n">size</span><span class="p">:])</span>  <span class="c1"># noqa</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">getter</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__mod__">
+
+        <code class="highlight language-python">
+__mod__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>mod</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">),</span> <span class="n">value</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__mul__">
+
+        <code class="highlight language-python">
+__mul__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>mul</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">),</span> <span class="n">value</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__pow__">
+
+        <code class="highlight language-python">
+__pow__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>pow</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">),</span> <span class="n">value</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__setitem__">
+
+        <code class="highlight language-python">
+__setitem__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Update a single column.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">"""Update a single column."""</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__sub__">
+
+        <code class="highlight language-python">
+__sub__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>sub</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">),</span> <span class="n">value</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.__truediv__">
+
+        <code class="highlight language-python">
+__truediv__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>truediv</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">),</span> <span class="n">value</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.annotate">
+
+        <code class="highlight language-python">
+annotate<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Annotate extended to also handle mapping values, as a <code>Case</code>_ expression.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**kwargs</code></td>
+<td><code></code></td>
+<td>
+<p><code>field={Q_obj: value, ...}, ...</code></p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p>As a provisional feature, an optional <code>default</code> key may be specified.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'QuerySet'</span><span class="p">:</span>
+    <span class="sd">"""Annotate extended to also handle mapping values, as a `Case`_ expression.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        **kwargs: ``field={Q_obj: value, ...}, ...``</span>
+
+<span class="sd">    As a provisional feature, an optional ``default`` key may be specified.</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">Case</span><span class="o">.</span><span class="n">isa</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">Case</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.change">
+
+        <code class="highlight language-python">
+change<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Update and return number of rows that actually changed.</p>
+<p>For triggering on-change logic without fetching first.</p>
+<p><code>if qs.change(status=...):</code> status actually changed</p>
+<p><code>qs.change({'last_modified': now}, status=...)</code> last_modified only updated if status updated</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defaults</code></td>
+<td><code>Mapping</code></td>
+<td>
+<p>optional mapping which will be updated conditionally, as with <code>update_or_create</code>.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="n">Mapping</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">"""Update and return number of rows that actually changed.</span>
+
+<span class="sd">    For triggering on-change logic without fetching first.</span>
+
+<span class="sd">    ``if qs.change(status=...):`` status actually changed</span>
+
+<span class="sd">    ``qs.change({'last_modified': now}, status=...)`` last_modified only updated if status updated</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        defaults: optional mapping which will be updated conditionally, as with ``update_or_create``.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.changed">
+
+        <code class="highlight language-python">
+changed<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return first mapping of fields and values which differ in the db.</p>
+<p>Also efficient enough to be used in boolean contexts, instead of <code>exists</code>.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">"""Return first mapping of fields and values which differ in the db.</span>
+
+<span class="sd">    Also efficient enough to be used in boolean contexts, instead of ``exists``.</span>
+<span class="sd">    """</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="o">*</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">field</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">field</span><span class="p">]}</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.exists">
+
+        <code class="highlight language-python">
+exists<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return whether there are at least the specified number of rows.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">"""Return whether there are at least the specified number of rows."""</span>
+    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">[:</span><span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_cache</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">count</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.groupby">
+
+        <code class="highlight language-python">
+groupby<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">,</span> <span class="o">**</span><span class="n">annotations</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return a grouped <code>QuerySet</code>_.</p>
+<p>The queryset is iterable in the same manner as <code>itertools.groupby</code>.
+Additionally the :meth:<code>reduce</code> functions will return annotated querysets.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">groupby</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">,</span> <span class="o">**</span><span class="n">annotations</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'QuerySet'</span><span class="p">:</span>
+    <span class="sd">"""Return a grouped `QuerySet`_.</span>
+
+<span class="sd">    The queryset is iterable in the same manner as ``itertools.groupby``.</span>
+<span class="sd">    Additionally the :meth:`reduce` functions will return annotated querysets.</span>
+<span class="sd">    """</span>
+    <span class="n">qs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="o">**</span><span class="n">annotations</span><span class="p">)</span>
+    <span class="n">qs</span><span class="o">.</span><span class="n">_groupby</span> <span class="o">=</span> <span class="n">fields</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">qs</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.items">
+
+        <code class="highlight language-python">
+items<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">,</span> <span class="o">**</span><span class="n">annotations</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return annotated <code>values_list</code>.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">,</span> <span class="o">**</span><span class="n">annotations</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'QuerySet'</span><span class="p">:</span>
+    <span class="sd">"""Return annotated ``values_list``."""</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="o">**</span><span class="n">annotations</span><span class="p">)[</span><span class="n">fields</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">annotations</span><span class="p">)]</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.max">
+
+        <code class="highlight language-python">
+max<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Max</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.mean">
+
+        <code class="highlight language-python">
+mean<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Avg</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.min">
+
+        <code class="highlight language-python">
+min<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Min</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.reduce">
+
+        <code class="highlight language-python">
+reduce<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">funcs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return aggregated values, or an annotated <code>QuerySet</code>_ if :meth:<code>groupby</code> is in use.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*funcs</code></td>
+<td><code></code></td>
+<td>
+<p>aggregation function classes</p>
+</td>
+<td><code>()</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">funcs</span><span class="p">):</span>
+    <span class="sd">"""Return aggregated values, or an annotated `QuerySet`_ if :meth:`groupby` is in use.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        *funcs: aggregation function classes</span>
+<span class="sd">    """</span>
+    <span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">,</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">funcs</span><span class="p">))]</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'_groupby'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_groupby</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="o">*</span><span class="n">funcs</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="n">default_alias</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">]</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="o">*</span><span class="n">funcs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_named</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">'Row'</span><span class="p">,</span> <span class="n">names</span><span class="p">)(</span><span class="o">**</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">row</span><span class="p">[</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flat</span> <span class="k">else</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">,</span> <span class="n">names</span><span class="p">))</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.sort_values">
+
+        <code class="highlight language-python">
+sort_values<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>QuerySet</code>_ ordered by selected values.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">sort_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'QuerySet'</span><span class="p">:</span>
+    <span class="sd">"""Return `QuerySet`_ ordered by selected values."""</span>
+    <span class="n">qs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="k">if</span> <span class="n">reverse</span> <span class="k">else</span> <span class="n">qs</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.std">
+
+        <code class="highlight language-python">
+std<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>StdDev</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.sum">
+
+        <code class="highlight language-python">
+sum<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Sum</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.update">
+
+        <code class="highlight language-python">
+update<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Update extended to also handle mapping values, as a <code>Case</code>_ expression.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**kwargs</code></td>
+<td><code></code></td>
+<td>
+<p><code>field={Q_obj: value, ...}, ...</code></p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">"""Update extended to also handle mapping values, as a `Case`_ expression.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        **kwargs: ``field={Q_obj: value, ...}, ...``</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">Case</span><span class="o">.</span><span class="n">isa</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="n">field</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.value_counts">
+
+        <code class="highlight language-python">
+value_counts<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s1">'count'</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return annotated value counts.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">value_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alias</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'count'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'QuerySet'</span><span class="p">:</span>
+    <span class="sd">"""Return annotated value counts."""</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">alias</span><span class="p">:</span> <span class="n">F</span><span class="o">.</span><span class="n">count</span><span class="p">()})</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.QuerySet.var">
+
+        <code class="highlight language-python">
+var<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Variance</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See source for available aggregate spatial functions if <a href="https://docs.djangoproject.com/en/stable/ref/contrib/gis/">gis</a> is configured.</p>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="model_values.Manager">
+
+        <code>model_values.Manager</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Manager.__contains__">
+
+        <code class="highlight language-python">
+__contains__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return whether primary key is present using <code>exists</code>.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+    <span class="sd">"""Return whether primary key is present using ``exists``."""</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">pk</span><span class="p">]</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Manager.__delitem__">
+
+        <code class="highlight language-python">
+__delitem__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Delete row with primary key.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+    <span class="sd">"""Delete row with primary key."""</span>
+    <span class="bp">self</span><span class="p">[</span><span class="n">pk</span><span class="p">]</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Manager.__getitem__">
+
+        <code class="highlight language-python">
+__getitem__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return <code>QuerySet</code>_ which matches primary key.</p>
+<p>To encourage direct db access, instead of always using get and save.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuerySet</span><span class="p">:</span>
+    <span class="sd">"""Return `QuerySet`_ which matches primary key.</span>
+
+<span class="sd">    To encourage direct db access, instead of always using get and save.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Manager.bulk_change">
+
+        <code class="highlight language-python">
+bulk_change<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">'pk'</span><span class="p">,</span> <span class="n">conditional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Update changed rows with a minimal number of queries, by inverting the data to use <code>pk__in</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code></code></td>
+<td>
+<p>value column</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>Mapping</code></td>
+<td>
+<p><code>{pk: value, ...}</code></p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td><code>str</code></td>
+<td>
+<p>unique key column</p>
+</td>
+<td><code>'pk'</code></td>
+</tr>
+<tr>
+<td><code>conditional</code></td>
+<td><code></code></td>
+<td>
+<p>execute select query and single conditional update;</p>
+</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>**kwargs</code></td>
+<td><code></code></td>
+<td>
+<p>additional fields to be updated</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">bulk_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'pk'</span><span class="p">,</span> <span class="n">conditional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">"""Update changed rows with a minimal number of queries, by inverting the data to use ``pk__in``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        field: value column</span>
+<span class="sd">        data: ``{pk: value, ...}``</span>
+<span class="sd">        key: unique key column</span>
+<span class="sd">        conditional: execute select query and single conditional update;</span>
+<span class="sd">        may be more efficient if the percentage of changed rows is relatively small</span>
+<span class="sd">        **kwargs: additional fields to be updated</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">conditional</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">pk</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="n">pk</span><span class="p">]</span> <span class="k">for</span> <span class="n">pk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk_changed</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">)}</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>  <span class="c1"># type: dict</span>
+    <span class="k">for</span> <span class="n">pk</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">updates</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">pk</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pk</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">conditional</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">F</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">updates</span><span class="p">[</span><span class="n">value</span><span class="p">])):</span> <span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">updates</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">updates</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">F</span><span class="p">(</span><span class="n">field</span><span class="p">)</span> <span class="o">!=</span> <span class="n">value</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">F</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">updates</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">count</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Manager.bulk_changed">
+
+        <code class="highlight language-python">
+bulk_changed<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">'pk'</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return mapping of values which differ in the db.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code></code></td>
+<td>
+<p>value column</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>Mapping</code></td>
+<td>
+<p><code>{pk: value, ...}</code></p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td><code>str</code></td>
+<td>
+<p>unique key column</p>
+</td>
+<td><code>'pk'</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">bulk_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'pk'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">"""Return mapping of values which differ in the db.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        field: value column</span>
+<span class="sd">        data: ``{pk: value, ...}``</span>
+<span class="sd">        key: unique key column</span>
+<span class="sd">    """</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">data</span><span class="p">))[</span><span class="n">key</span><span class="p">,</span> <span class="n">field</span><span class="p">]</span><span class="o">.</span><span class="n">iterator</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">pk</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">pk</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">rows</span> <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">data</span><span class="p">[</span><span class="n">pk</span><span class="p">]}</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Manager.get_queryset">
+
+        <code class="highlight language-python">
+get_queryset<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Return a new QuerySet object. Subclasses can override this method to
+customize the behavior of the Manager.</p>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">QuerySet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">Query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_db</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hints</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="model_values.Manager.upsert">
+
+        <code class="highlight language-python">
+upsert<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Update or insert returning number of rows or created object.</p>
+<p>Faster and safer than <code>update_or_create</code>.
+Supports combined expression updates by assuming the identity element on insert:  <code>F(...) + 1</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defaults</code></td>
+<td><code>Mapping</code></td>
+<td>
+<p>optional mapping which will be updated, as with <code>update_or_create</code>.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">upsert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="n">Mapping</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">]:</span>
+    <span class="sd">"""Update or insert returning number of rows or created object.</span>
+
+<span class="sd">    Faster and safer than ``update_or_create``.</span>
+<span class="sd">    Supports combined expression updates by assuming the identity element on insert:  ``F(...) + 1``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        defaults: optional mapping which will be updated, as with ``update_or_create``.</span>
+<span class="sd">    """</span>
+    <span class="n">update</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="s1">'update'</span> <span class="k">if</span> <span class="n">defaults</span> <span class="k">else</span> <span class="s1">'count'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">defaults</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">expressions</span><span class="o">.</span><span class="n">CombinedExpression</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">expr</span> <span class="k">else</span> <span class="n">value</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">atomic</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">defaults</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">defaults</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="model_values.Case">
+
+        <code>model_values.Case</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p><code>Case</code> expression from mapping of when conditionals.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conds</code></td>
+<td><code></code></td>
+<td>
+<p><code>{Q_obj: value, ...}</code></p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td><code></code></td>
+<td>
+<p>optional default value or <code>F</code> object</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>output_field</code></td>
+<td><code></code></td>
+<td>
+<p>optional field defaults to registered <code>types</code></p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="model_values.classproperty">
+
+        <code>model_values.classproperty</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>A property bound to a class.</p>
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="model_values.EnumField">
+
+        <code class="highlight language-python">
+model_values.EnumField<span class="p">(</span><span class="n">enum</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>Return a <code>CharField</code> or <code>IntegerField</code> with choices from given enum.</p>
+<p>By default, enum names and values are used as db values and display labels respectively,
+returning a <code>CharField</code> with computed <code>max_length</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>display</code></td>
+<td><code>Callable</code></td>
+<td>
+<p>optional callable to transform enum names to display labels,
+thereby using enum values as db values and also supporting integers.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>model_values/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">EnumField</span><span class="p">(</span><span class="n">enum</span><span class="p">,</span> <span class="n">display</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">Field</span><span class="p">:</span>
+    <span class="sd">"""Return a ``CharField`` or ``IntegerField`` with choices from given enum.</span>
+
+<span class="sd">    By default, enum names and values are used as db values and display labels respectively,</span>
+<span class="sd">    returning a ``CharField`` with computed ``max_length``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        display: optional callable to transform enum names to display labels,</span>
+<span class="sd">            thereby using enum values as db values and also supporting integers.</span>
+<span class="sd">    """</span>
+    <span class="n">choices</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">choice</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">choice</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">enum</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">display</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">choice</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">display</span><span class="p">(</span><span class="n">choice</span><span class="o">.</span><span class="n">name</span><span class="p">))</span> <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">enum</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">max_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">choices</span><span class="p">)))</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">choices</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">choices</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../example/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Example
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
